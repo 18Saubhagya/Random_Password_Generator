@@ -8,6 +8,8 @@ class Random:
     random=3251
     def RandomGenerate(self,limit):
         self.random = ((self.random*self.random)/100)%10000
+        if (self.random % 100) == 0 :
+            self.random = self.random + (self.random/100)
         return math.ceil(self.random%limit)
     def change(self,time):
         self.random=int((self.random+(time%10000))%10000)
@@ -45,10 +47,16 @@ def generate():
 
             if choice == 0 : #For lower case
                 temp=p.RandomGenerate(25)
+                if temp == 12:
+                    t1=int(time.time())
+                    p.change(t1)
                 password=password+alphabet[temp]
                 size=size+1
             elif choice == 1 : #For upper case
                 temp=p.RandomGenerate(25)
+                if temp == 11:
+                    t1=int(time.time())
+                    p.change(t1)
                 password=password+Alpha[temp]
                 size=size+1
             elif choice == 2 : #For Numbers
